@@ -1,7 +1,11 @@
+import React from 'react';
 import { useState, useEffet } from 'react';
 import Header from '../Header/Header.jsx'
 import axios from 'axios';
 import './App.css';
+import ShoppingListForm from '../ShoppingForm/ShoppingForm.js';
+
+
 
 
 function App() {
@@ -31,7 +35,9 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <p>Under Construction...</p>
+            
+            <ShoppingListForm getShoppingList={getShoppingList}/>
+            <p>Under Construction...</p>
             </main>
         </div>
     );
