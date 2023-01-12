@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
 import { useState, useEffet } from 'react';
 import Header from '../Header/Header.jsx'
+import axios from 'axios';
 import './App.css';
 
 
@@ -15,7 +15,7 @@ function App() {
     }, [])
 
     const getShoppingList = () => {
-        axios.get('/ShoppingList')
+        axios.get('/items')
          .then(response => {
             setShoppingList(response.data)
          })
