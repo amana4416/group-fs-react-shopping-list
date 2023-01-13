@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -9,12 +10,12 @@ router.get('/', (req, res) => {
             ORDER BY "id";
     `;
     pool.query(sqlText)
-        .then((result) => {
+        .then((dbRes) => {
             console.log('sending shopping list to the client!');
-            res.send(result.rows);
+            res.send(dbRes.rows);
         })
-        .catch((error) => {
-            console.log(`error in server get route ${sqlText}`, error);
+        .catch((dbError) => {
+            console.log(`error in server get route ${sqlText}`, dbErr);
             res.sendStatus(500);
         })
 })
@@ -27,15 +28,16 @@ router.post('/', (req, res) => {
     `;
     const sqlParams = [item.name, item.quantity, item.unit];
     pool.query(sqlText, sqlParams)
-        .then((result) => {
+        .then((dbRes) => {
             console.log(`Added an item to the shopping list!`);
             res.sendStatus(201);
         })
-        .catch((error) => {
-            console.log(`error in server post route ${sqlText}`, error);
+        .catch((dbErr) => {
+            console.log(`error in server post route ${sqlText}`, dbErr);
             res.sendStatus(500);
         })
 })
+
 
 //PUT Route for Buy Button
 router.put('/:id', (req, res) => {
@@ -81,6 +83,43 @@ router.put('/', (req, res) => {
             console.log('something broke in PUT/items/is_purchased Reset Button', error)
         })
 })//end PUT Route for Reset Button
+
+//delete route for deleting a single item from list
+router.delete('/:id', (req, res) => {
+    let id = req.params.id
+    let sqlValues = [id]
+    const sqlText = `
+        DELETE FROM "ShoppingList"
+            WHERE "id"=$1;
+    `;
+    pool.query(sqlText, sqlValues)
+        .then((dbRes) => {
+            console.log('deleting an item from the database');
+            res.sendStatus(201);
+        })
+        .catch ((dbErr) => {
+            console.log('error in deleting an item', dbErr);
+            res.sendStatus(500);
+        })
+})
+
+//delete route for deleting all items from shopping list
+//clear entire shopping list
+router.delete('/', (req, res) => {
+    const sqlText = `
+        DELETE FROM "ShoppingList";
+    `;
+pool.query(sqlText)
+    .then((dbRes) => {
+        console.log('clearing the whole shopping list');
+        res.sendStatus(201);
+    })
+    .catch ((dbErr) => {
+        console.log('error in clearing the shopping list', dbErr);
+        res.sendStatus(500);
+    })
+})
+
 
 
 module.exports = router;
