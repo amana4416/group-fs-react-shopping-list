@@ -1,6 +1,6 @@
-function ShoppingList({ShoppingListForm}) {
+function ShoppingList({shoppingList}) {
     return (
-        <form>
+        <>
             <table>
                 <thead>
                     <th>Item Name</th>
@@ -8,14 +8,16 @@ function ShoppingList({ShoppingListForm}) {
                     <th>Unit</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{newItem}</td>
-                        <td>{newQuantity}</td>
-                        <td>{newUnit}</td>
-                    </tr>
+                    {shoppingList.map(item => (
+                        <tr key={item.id}>
+                            <td>{item.name}</td>
+                            <td>{item.quantity}</td>
+                            <td>{item.unit}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-        </form>
+        </>
     );
 }
 
