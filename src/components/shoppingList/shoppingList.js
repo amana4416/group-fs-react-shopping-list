@@ -30,6 +30,8 @@ function ShoppingList({ shoppingList, getShoppingList }) {
             getShoppingList();
         }).catch((error) => {
             console.log('unable to RESET items', error)
+        })
+    }
     
     //delete request deleting a single item
     const removeItem = (id) => {
