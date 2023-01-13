@@ -3,9 +3,11 @@ function ShoppingList({ shoppingList }) {
         <>
             <table>
                 <thead>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                    <th>Unit</th>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {shoppingList.map((item) => (

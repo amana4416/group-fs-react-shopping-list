@@ -17,7 +17,7 @@ function ShoppingListForm({getShoppingList}) {
 
     const addShoppingList = () => {
         axios
-            .post('/items', { item: newItem, quantity: newQuantity, unit: newUnit })
+            .post('/items', { name: newItem, quantity: newQuantity, unit: newUnit })
             .then((response) => {
                 setNewItem('');
                 setNewQuantity('');
@@ -25,7 +25,7 @@ function ShoppingListForm({getShoppingList}) {
                 getShoppingList();
             })
             .catch((error) => {
-                alert('error adding Guest', error);
+                alert('error in addShoppingList', error);
             });
     };
 
