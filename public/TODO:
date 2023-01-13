@@ -1,0 +1,17 @@
+Is our shopping list rendering?
+Can we save an item?
+
+
+Create Form
+
+
+
+PUT Route
+- Buy Button (is-purchased = true)
+- Reset Button  (is_purchased = false)
+
+
+
+DELETE Route
+- Clear Button
+- Remove Button 
