@@ -1,4 +1,4 @@
-function ShoppingList({shoppingList}) {
+function ShoppingList({ shoppingList }) {
     return (
         <>
             <table>
@@ -8,7 +8,7 @@ function ShoppingList({shoppingList}) {
                     <th>Unit</th>
                 </thead>
                 <tbody>
-                    {shoppingList.map(item => (
+                    {shoppingList.map((item) => (
                         <tr key={item.id}>
                             <td>{item.name}</td>
                             <td>{item.quantity}</td>
@@ -21,4 +21,4 @@ function ShoppingList({shoppingList}) {
     );
 }
 
-export default ShoppingList; 
+export default ShoppingList;

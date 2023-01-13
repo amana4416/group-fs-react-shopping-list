@@ -49,6 +49,7 @@ function ShoppingListForm({getShoppingList}) {
                 value={newUnit}
                 onChange={(event) => setNewUnit(event.target.value)}
             />
+            <button type="submit">Add Item to List</button>
         </form>
     );
 }
