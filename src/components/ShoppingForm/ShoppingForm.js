@@ -9,13 +9,13 @@ function ShoppingListForm({getShoppingList}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (newItem) {
-            addShoopingList();
+            addShoppingList();
         } else {
             alert('Please add an item name');
         }
     };
 
-    const addShoppinglist = () => {
+    const addShoppingList = () => {
         axios
             .post('/items', { item: newItem, quantity: newQuantity, unit: newUnit })
             .then((response) => {
