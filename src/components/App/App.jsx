@@ -32,7 +32,7 @@ function App() {
                 <p>Under Construction...</p>
             </main>
             <ShoppingListForm getShoppingList={getShoppingList}/>
-            <ShoppingList ShoppingListForm={ShoppingListForm}/>
+            <ShoppingList shoppingList={shoppingList}/>
         </div>
     );
 }
