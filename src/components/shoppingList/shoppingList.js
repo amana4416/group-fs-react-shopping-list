@@ -1,6 +1,35 @@
 import axios from 'axios';
 
-function ShoppingList({shoppingList, getShoppingList}) {
+function ShoppingList({ shoppingList, getShoppingList }) {
+
+
+    const buyItemButton = (id) => {
+
+        axios({
+            method: 'PUT',
+            url: `/items/${id}`,
+            data: {
+                is_purchased: true,
+            },
+        }).then((response) => {
+            getShoppingList();
+
+        }).catch((error) => {
+            console.log('unable to BUY item', error)
+        })
+    }
+
+    const resetButton = () => {
+        axios({
+            method: 'PUT', 
+            url: '/items',
+            data: {
+                is_purchased: false
+            },
+        }).then((response) => {
+            getShoppingList();
+        }).catch((error) => {
+            console.log('unable to RESET items', error)
     
     //delete request deleting a single item
     const removeItem = (id) => {
@@ -25,19 +54,21 @@ function ShoppingList({shoppingList, getShoppingList}) {
         .catch(error => {
             console.log('error in client delete route - clearing the whole list', error);
             alert('error error clearing the list');
+
         })
     }
 
     return (
         <>
-            <button onClick={clearList}>Clear</button>
+
+        <button onClick={clearList}>Clear</button>
+        <button onClick={resetButton}>Reset</button>
             <table>
                 <thead>
                     <tr>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Unit</th>
-                        <th>Remove</th>
+                      <th>Item Name</th>
+                      <th>Quantity</th>
+                      <th>Unit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +78,9 @@ function ShoppingList({shoppingList, getShoppingList}) {
                             <td>{item.quantity}</td>
                             <td>{item.unit}</td>
                             <td>
+                                <button onClick={()=>buyItemButton(item.id)}>Buy</button>
+                            </td>
+                             <td>
                                 <button onClick={()=>removeItem(item.id)}>Remove</button>
                             </td>
                         </tr>
