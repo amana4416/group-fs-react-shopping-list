@@ -41,7 +41,7 @@ function ShoppingList({shoppingList, getShoppingList}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {shoppingList.map(item => (
+                    {shoppingList.map((item) => (
                         <tr key={item.id}>
                             <td>{item.name}</td>
                             <td>{item.quantity}</td>
@@ -57,4 +57,4 @@ function ShoppingList({shoppingList, getShoppingList}) {
     );
 }
 
-export default ShoppingList; 
+export default ShoppingList;
