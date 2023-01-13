@@ -1,14 +1,16 @@
-function ShoppingList({shoppingList}) {
+function ShoppingList({ shoppingList }) {
     return (
         <>
             <table>
                 <thead>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                    <th>Unit</th>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    {shoppingList.map(item => (
+                    {shoppingList.map((item) => (
                         <tr key={item.id}>
                             <td>{item.name}</td>
                             <td>{item.quantity}</td>
@@ -21,4 +23,4 @@ function ShoppingList({shoppingList}) {
     );
 }
 
-export default ShoppingList; 
+export default ShoppingList;
